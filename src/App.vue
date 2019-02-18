@@ -5,7 +5,7 @@
     <div class="container">
       <div class="row mt-3">
         <!-- Inventory -->
-        <Inventory></Inventory>
+        <Inventory :items="items"></Inventory>
         <!-- cart -->
         <Cart></Cart>
       </div>
@@ -17,12 +17,23 @@
 import Navbar from './components/Navbar'
 import Inventory from './components/Inventory'
 import Cart from './components/Cart'
+import Data from './data'
 export default {
 
   components:{
     Navbar,
     Inventory,
     Cart
+  },
+
+  data(){
+    return{
+      items: []
+    }
+  },
+
+  mounted(){
+    this.items = Data
   }
 
 }
