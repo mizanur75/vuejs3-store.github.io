@@ -29,11 +29,7 @@ export default {
   data(){
     return{
       items: [],
-      cart: [{
-        id: 1,
-        name: "test",
-        price: 10,
-      }]
+      cart: []
     }
   },
 

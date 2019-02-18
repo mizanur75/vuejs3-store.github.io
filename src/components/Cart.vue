@@ -5,7 +5,7 @@
             <tr>
             <th>#SL</th>
             <th>Name</th>
-            <th>U/P</th>
+            <th>Price</th>
             <th>Action</th>
             </tr>
         </thead>
@@ -13,14 +13,14 @@
             <tr v-for="(item, i) in items" :key="i">
             <td>{{i + 1}}</td>
             <td>{{item.name}} </td>
-            <td>{{item.price}}</td>
-            <td><button type="button" class="btn btn-sm btn-danger">x</button></td>
+            <td>{{item.price}}/=</td>
+            <td><button type="button" @click="removeItem(i)" class="btn btn-sm btn-danger">x</button></td>
             </tr>
         </tbody>
         <tfoot>
             <tr>
             <td colspan="2">Total</td>
-            <td>/=</td>
+            <td> {{total}} /=</td>
             </tr>
         </tfoot>
         </table>
@@ -30,7 +30,23 @@
 <script>
 export default {
 
-    props:['items']
+    props:['items'],
+
+    computed:{
+        total(){
+            var total = 0
+            this.items.forEach(item => {
+                total += parseFloat(item.price)
+            })
+            return total
+        }
+    },
+
+    methods:{
+        removeItem(i){
+            this.items.splice(i, 1)
+        }
+    }
 
 }
 </script>
