@@ -10,11 +10,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <tr v-for="(item, i) in items" :key="i">
+            <td>{{i + 1}}</td>
+            <td>{{item.name}} </td>
+            <td>{{item.price}}</td>
+            <td><button type="button" class="btn btn-sm btn-danger">x</button></td>
             </tr>
         </tbody>
         <tfoot>
@@ -29,6 +29,8 @@
 
 <script>
 export default {
+
+    props:['items']
 
 }
 </script>

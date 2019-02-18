@@ -5,7 +5,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{item.name}}</h5>
                 <p class="card-text">{{item.price}}</p>
-                <a href="#" class="btn btn-primary">+ Add</a>
+                <a @click="addItem(item)" class="btn btn-primary">+ Add</a>
             </div>
         </div>
     </div>
@@ -16,6 +16,11 @@ export default {
 
     props: ['items'],
     
+    methods:{
+        addItem(item){
+            this.$emit('addNewItem', item)
+        }
+    }
 
 }
 </script>

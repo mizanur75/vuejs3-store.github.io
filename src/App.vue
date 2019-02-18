@@ -5,9 +5,9 @@
     <div class="container">
       <div class="row mt-3">
         <!-- Inventory -->
-        <Inventory :items="items"></Inventory>
+        <Inventory @addNewItem="addToCart" :items="items"></Inventory>
         <!-- cart -->
-        <Cart></Cart>
+        <Cart :items="cart"></Cart>
       </div>
     </div>
   </div>
@@ -28,12 +28,22 @@ export default {
 
   data(){
     return{
-      items: []
+      items: [],
+      cart: [{
+        id: 1,
+        name: "test",
+        price: 10,
+      }]
     }
   },
 
   mounted(){
     this.items = Data
+  },
+  methods:{
+    addToCart(item){
+      this.cart.push(item)
+    }
   }
 
 }
