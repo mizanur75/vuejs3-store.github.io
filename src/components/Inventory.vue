@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-9">
+    <div>
         <div v-for="(item, i) in items" :key="i" class="card float-left mb-3 mr-3" style="width: 15rem;">
             <img class="card-img-top" :src="item.image" alt="Card image cap">
             <div class="card-body">

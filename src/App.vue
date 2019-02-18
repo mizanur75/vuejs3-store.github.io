@@ -1,11 +1,21 @@
 <template>
   <div id="app">
+    
     <!-- navbar -->
-    <Navbar @query="searchItem"></Navbar>
+    <Navbar></Navbar>
+    
     <div class="container">
       <div class="row mt-3">
+        
         <!-- Inventory -->
-        <Inventory @addNewItem="addToCart" :items="items"></Inventory>
+        <div class="col-md-9">
+          <div class="row mb-3">
+            <div class="col-md-11">
+              <input type="text" class="form-control form-control-sm" v-model="query" placeholder="Serach Here">
+            </div>
+          </div>
+          <Inventory @addNewItem="addToCart" :items="items"></Inventory>
+        </div>
         <!-- cart -->
         <Cart :items="cart"></Cart>
       </div>
@@ -28,8 +38,19 @@ export default {
 
   data(){
     return{
+      query: '',
       items: [],
       cart: []
+    }
+  },
+
+  watch:{
+    query: function (newQ, oldQ){
+      if(newQ === ''){
+        this.items = Data
+      }else{
+        this.searchItem(this.query)
+      }
     }
   },
 
