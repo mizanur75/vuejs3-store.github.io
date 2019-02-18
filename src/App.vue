@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- navbar -->
-    <Navbar></Navbar>
+    <Navbar @query="searchItem"></Navbar>
     <div class="container">
       <div class="row mt-3">
         <!-- Inventory -->
@@ -39,6 +39,11 @@ export default {
   methods:{
     addToCart(item){
       this.cart.push(item)
+    },
+    searchItem(query){
+      this.items = Data.filter(item =>{
+        return item.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
+      })
     }
   }
 
