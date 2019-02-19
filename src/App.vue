@@ -3,21 +3,17 @@
     
     <!-- navbar -->
     <Navbar></Navbar>
-    <router-view></router-view>
+    <router-link to="/">Hello Router</router-link>
+    <router-link to="/item/1">Test Router 1</router-link>
+    
     <div class="container">
       <div class="row mt-3">
-        
-        <!-- Inventory -->
         <div class="col-md-9">
-          <div class="row mb-3">
-            <div class="col-md-11">
-              <input type="text" class="form-control form-control-sm" v-model="query" placeholder="Serach Here">
-            </div>
-          </div>
-          <Inventory @addNewItem="addToCart" :items="items"></Inventory>
+          <router-view @addNewItem="addToCart"></router-view>
         </div>
-        <!-- cart -->
-        <Cart :items="cart"></Cart>
+        <div class="col-md-3">
+          <Cart :items="cart"></Cart>
+        </div>
       </div>
     </div>
   </div>
@@ -25,34 +21,26 @@
 
 <script>
 import Navbar from './components/Navbar'
-import Inventory from './components/Inventory'
+// import Inventory from './components/Inventory'
 import Cart from './components/Cart'
 import Data from './data'
 export default {
 
   components:{
     Navbar,
-    Inventory,
+    // Inventory,
     Cart
   },
 
   data(){
     return{
-      query: '',
+      
       items: [],
       cart: []
     }
   },
 
-  watch:{
-    query: function (newQ, oldQ){
-      if(newQ === ''){
-        this.items = Data
-      }else{
-        this.searchItem(this.query)
-      }
-    }
-  },
+  
 
   mounted(){
     this.items = Data
@@ -60,11 +48,6 @@ export default {
   methods:{
     addToCart(item){
       this.cart.push(item)
-    },
-    searchItem(query){
-      this.items = Data.filter(item =>{
-        return item.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
-      })
     }
   }
 
